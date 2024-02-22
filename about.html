@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<body>
+		<p>
+			<br/>
+			<head>
+Matrix Game
+			</head>
+			<br/>
+Matrix Game is a simple command-line game that challenges players to rearrange a grid of numbers into a specific target pattern using a limited number of moves. The game is written in C and can be played in any Unix-like environment, such as Linux or macOS.
+			<br/>
+			<br/>
+Game play
+			<br/>
+At the start of the game, the player is presented with a grid of numbers and a target pattern. The grid is displayed as a table, with each cell containing a number. The target pattern is also displayed as a table, with each cell containing a number or a blank space.
+			<br/>
+			<br/>
+The player can move the numbers in the grid by specifying a direction (up, down, left, or right) and a distance. When a number is moved, it swaps places with the number in the direction and distance specified. For example, if the player moves a number to the right, it will swap places with the number to its right.
+			<br/>
+			<br/>
+The player has a limited number of moves to rearrange the grid into the target pattern. If the player succeeds, they win the game and are congratulated. If the player runs out of moves, they lose the game and are encouraged to try again.
+			<br/>
+			<br/>
+Controls
+			<br/>
+D or d: Move right
+			<br/>
+A or a: Move left
+			<br/>
+W or w: Move up
+			<br/>
+S or s: Move down
+			<br/>
+Any other character: Start or restart the game
+			<br/>
+Building and Running
+			<br/>
+To build and run Matrix Game, follow these steps:
+			<br/>
+			<br/>
+Save the source code to a file named matrix_game.c.
+			<br/>
+Open a terminal and navigate to the directory containing the source code.
+			<br/>
+Compile the source code using the following command: gcc -o matrix_game matrix_game.c
+			<br/>
+Run the compiled game using the following command: ./matrix_game
+			<br/>
+FAQ
+			<br/>
+Q: Why can't I move the numbers in the grid?
+			<br/>
+			<br/>
+A: Make sure you have entered a valid move (up, down, left, or right) and a valid distance. If you are still having trouble, try restarting the game.
+			<br/>
+			<br/>
+Q: Why did I lose the game even though I matched the target pattern?
+			<br/>
+			<br/>
+A: Make sure you have not exceeded the maximum number of moves allowed. If you have matched the target pattern and still lost the game, try increasing the maximum number of moves.
+			<br/>
+			<br/>
+Q: Why is the game so slow?
+			<br/>
+			<br/>
+A: Matrix Game is a simple command-line game and is not designed for high-performance graphics or input. If you are experiencing slow performance, try reducing the size of the grid or the maximum number of moves.
+			<br/>
+			<br/>
+			<br/>
+		</p>
+	</body>
+</html>
