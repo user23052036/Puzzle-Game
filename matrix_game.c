@@ -18,8 +18,8 @@ bool is_unique(int**, int, int, int, int);
 int main()
 {
     int level,moves,length,last_num;
-    char direction;
-                    
+    char direction,choice,sub_level[10];
+
     printf("                      !  GAME !  \n");
     printf("_________________________________________________________\n\n");
     printf("              INSTRUCTIONS GIVEN BELOW \n\n");
@@ -28,77 +28,122 @@ int main()
     printf("3. press (w) to move up     \n");
     printf("2. press (s) to move down   \n\n");
 
-    
-    printf("pRESS (1) FOR EASY LEVEL [40 moves]\n");
-    printf("pRESS (2) FOR MEDIUM LEVEL [30 moves]\n");
-    printf("pRESS (3) FOR HARD LEVEL [20 moves]\n\n");
+
+    printf("PRESS (1) FOR LEVEL-1 [40 moves]\n");
+    printf("PRESS (2) FOR LEVEL-2 [30 moves]\n");
+    printf("PRESS (3) FOR LEVEL-3 [20 moves]\n\n");
     printf("Choose the level at which you want to play the game :: --->");
     scanf("%d",&level);
 
-    switch(level)
-    {
-        case 1:
+    printf("PRESS (1) FOR EASY (3×3) \n");
+    printf("PRESS (2) FOR MEDIUM (4×4) \n");
+    printf("PRESS (3) FOR HARD (5×5) \n\n");
+    printf("Choose the level at which you want to play the game :: --->");
+    scanf("%s",&sub_level);
+
+    while(1)
+    {   
+        switch(level)
         {
-            moves = 40;
-            length = 3;
-            break;
+            case 1:
+                moves = 40;
+                break;
+
+            case 2:
+                moves = 35;
+                break;
+
+            case 3:
+                moves = 30;
+                break;
         }
-        case 2:
+
+        switch(sub_level[0])
         {
-            moves = 30;
-            length = 4;
-            break;
+            case 'E':
+            case 'e':
+                length = 3;
+                break;
+
+            case 'M':
+            case 'm':
+                length = 4;
+                break;
+
+            case 'H':
+            case 'h':
+                length = 5;
+                break;
         }
-        case 3:
-        {
-            moves = 20;
-            length = 5;
-            break;
-        }
-    }
-    printf("below is the winning position need to be achieved to win the game\n\n");
-    int **array = (int**)malloc(length*sizeof(int*));  
 
-    for(int i=0; i<length; i++)
-        array[i] = (int*)malloc(length*sizeof(int));    
-    
-    assign_num(array,length);                        
-    display(array,length);
+        printf("Below is the winning position need to be achieved to win the game\n\n");
+        int **array = (int**)malloc(length*sizeof(int*));  
 
-    while(getchar() != '\n'){}
-
-    printf("Lets play the GAME Enter any character to start ::--->  ");
-    getchar();
-    
-    random_assign(array,1,length*length,length);
-    system("clear");
-    display(array,length);
-
-    while(moves)
-    {
-        printf("play your move:-> ");
-        scanf("%c",&direction);
-
-        getchar();
-        system("clear");
-        algorithm(array,direction,length);
+        for(int i=0; i<length; i++)
+            array[i] = (int*)malloc(length*sizeof(int));    
         
-        printf("moves left:--->  (%d) \n\n",moves);
+        assign_num(array,length);                        
         display(array,length);
 
-        if(match(array,length) == 0)
-            {
-                printf("\n\t\t You have won the game by only %d moves CONGRATULATIONS! ",moves);
-                free_memory(array,length);
-                exit(0);
-            }
-        moves--;
-    }
-    if(moves == 0)
-        printf("\n\t\t LOST !!!! pLEASE TRY AGAIN ");
+        while(getchar() != '\n'){}
 
-    free_memory(array,length);
-    return 0;
+        printf("Lets play the GAME Enter any character to start ::--->  ");
+        getchar();
+        
+        random_assign(array,1,length*length,length);
+        system("clear");
+        display(array,length);
+
+        while(moves)
+        {
+            printf("play your move:-> ");
+            scanf("%c",&direction);
+
+            getchar();
+            system("clear");
+            algorithm(array,direction,length);
+            
+            printf("moves left:--->  (%d) \n\n",moves);
+            display(array,length);
+
+            if(match(array,length) == 0)
+                {
+                    printf("\n\t\t You have won the game by only %d moves CONGRATULATIONS! \n",moves);
+                    printf("Wanna move to next level press (y) else press (n) :--->");
+                    scanf("%c",&choice);
+
+                    if((choice == 'y' || choice == 'Y'))
+                    {
+                        if((level<4) && (length<5))
+                        {
+                            length++;
+                            printf("you moved to the (%d×%d) level\n",length,length);
+                        }
+                        else if(level == 3 && length == 5)
+                        {
+                            printf("Congratulations you have COMPLETED THE GAME !!!");
+                            break;
+                        }
+                        else if(length == 5)
+                        {
+                            level++;
+                            length = 3;
+                            printf("you moved to the %d level and (%d×%d) sub-level\n",level,length,length);
+                        }
+                    }
+                    else
+                        break;
+                }
+            moves--;
+        }
+        if(moves == 0)
+        {
+            printf("\n\t\t LOST !!!! TRY AGAIN ");
+            break;
+        }
+        free_memory(array,length);
+        return 0;
+    }
 }
 
 
