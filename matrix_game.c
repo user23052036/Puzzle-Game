@@ -35,9 +35,9 @@ int main()
     printf("Choose the level at which you want to play the game :: --->");
     scanf("%d",&level);
 
-    printf("PRESS (1) FOR EASY (3×3) \n");
-    printf("PRESS (2) FOR MEDIUM (4×4) \n");
-    printf("PRESS (3) FOR HARD (5×5) \n\n");
+    printf("TYPE EASY FOR EASY LEVEL (3*3) \n");
+    printf("TYPE MEDIUM FOR MEDIUM LEVEL (4*4) \n");
+    printf("TYPE HARD FOR HARD LEVEL (5*5) \n\n");
     printf("Choose the level at which you want to play the game :: --->");
     scanf("%s",&sub_level);
 
@@ -87,7 +87,7 @@ int main()
 
         while(getchar() != '\n'){}
 
-        printf("Lets play the GAME Enter any character to start ::--->  ");
+        printf("Lets play the GAME press enter to start ::--->  ");
         getchar();
         
         random_assign(array,1,length*length,length);
@@ -345,7 +345,7 @@ void algorithm(int **array, char direction, int length)
             free_memory(array,length);
             exit(0);
         }
-}
+    }
 }
 
 
