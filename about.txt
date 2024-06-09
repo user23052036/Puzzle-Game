@@ -1,0 +1,88 @@
+# About Matrix Game
+
+Welcome to the Matrix Game! This is a puzzle game where you slide tiles on a grid to arrange them in the correct order. It offers various levels of difficulty, ranging from easy (3x3 grid) to hard (5x5 grid), and provides a challenging and engaging experience for players of all skill levels.
+
+## Instructions
+
+- **Move Right:** Press `D`
+- **Move Left:** Press `A`
+- **Move Up:** Press `W`
+- **Move Down:** Press `S`
+
+## Game Levels
+
+- **Level 1:** 40 moves
+- **Level 2:** 35 moves
+- **Level 3:** 30 moves
+
+## Sub-Levels
+
+- **Easy:** 3x3 grid
+- **Medium:** 4x4 grid
+- **Hard:** 5x5 grid
+
+## Functions Overview
+
+### `random_assign(int** array, int min, int max, int length)`
+This function assigns random numbers to the grid while ensuring no duplicates.
+
+### `int match(int** array, int length)`
+This function checks if the current arrangement of tiles matches the winning position.
+
+### `void display(int** array, int length)`
+This function displays the grid in a readable format.
+
+### `void algorithm(int** array, char direction, int length)`
+This function moves the blank space in the specified direction and updates the grid.
+
+### `void assign_num(int** array, int length)`
+This function assigns the winning numbers to the grid in ascending order.
+
+### `void check_boundary(int** array, int length)`
+This function checks if the blank space is within the grid boundaries after a move.
+
+### `void free_memory(int** array, int length)`
+This function frees the dynamically allocated memory used for the grid.
+
+### `bool is_unique(int** array, int length, int i, int j, int rand_num)`
+This function checks if a number is unique within the grid.
+
+## Detailed Function Descriptions
+
+### `void random_assign(int** array, int min, int max, int length)`
+Assigns random numbers to the grid while ensuring no duplicates. It uses `rand()` to generate random numbers and checks for uniqueness with `is_unique()`.
+
+### `int match(int** array, int length)`
+Compares the current grid with the winning grid to determine if the player has won. It creates a new grid with the correct order and checks each position.
+
+### `void display(int** array, int length)`
+Prints the grid to the console. It formats the grid nicely, ensuring consistent spacing between numbers.
+
+### `void algorithm(int** array, char direction, int length)`
+Handles the player's moves. Depending on the direction input (`W`, `A`, `S`, `D`), it swaps the blank space with the adjacent tile and checks boundaries.
+
+### `void assign_num(int** array, int length)`
+Initializes the grid with numbers in ascending order, setting up the winning configuration.
+
+### `void check_boundary(int** array, int length)`
+Ensures that the blank space remains within the grid boundaries after a move. If the move is invalid, it prints an error message and exits the game.
+
+### `void free_memory(int** array, int length)`
+Frees the memory allocated for the grid to prevent memory leaks. It iterates through each row and frees the allocated space.
+
+### `bool is_unique(int** array, int length, int i, int j, int rand_num)`
+Checks if a randomly generated number is unique within the grid. It compares the number with all existing numbers in the grid.
+
+## How to Play
+
+1. **Choose a Level:** Select your preferred level (1 to 3) with different move limits.
+2. **Select a Sub-Level:** Choose the grid size (Easy, Medium, Hard).
+3. **Start the Game:** Press enter to begin and make moves using `W`, `A`, `S`, `D`.
+4. **Win Condition:** Arrange the tiles in ascending order to win.
+5. **Next Level:** If you win, you can proceed to the next level or sub-level.
+
+## Enjoy the Challenge!
+
+This game is designed to test your logical thinking and puzzle-solving skills. We hope you enjoy playing and find the challenge both fun and rewarding.
+
+Feel free to contribute to the project on [GitHub](https://github.com/your-repo-link). Your feedback and suggestions are always welcome!
