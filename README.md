@@ -46,8 +46,18 @@ Here's an overview of the main functions used in the game:
 4. **Win Condition:** Arrange the tiles in ascending order to win.
 5. **Next Level:** If you win, you can proceed to the next level or sub-level.
 
-## Enjoy the Challenge!
 
-Matrix Game is designed to test your logical thinking and puzzle-solving skills. We hope you enjoy playing and find the challenge both fun and rewarding.
+## Contribution
 
-Feel free to contribute to the project on [GitHub](https://github.com/your-repo-link). Your feedback and suggestions are always welcome!
+We welcome contributions to improve Matrix Game! If you have any ideas for improvements, new features, or bug fixes, feel free to contribute. Here's how:
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature`)
+3. Make your changes and commit them (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature`)
+5. Create a new Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
