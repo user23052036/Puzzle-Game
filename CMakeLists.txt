@@ -16,11 +16,14 @@ include_directories(code)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
-# Link the math library
-target_link_libraries(${PROJECT_NAME} m)
+# Check if the system is Unix-like (including macOS and Linux)
+if(UNIX)
+    # Link the math library only for Unix-like systems
+    target_link_libraries(${PROJECT_NAME} m)
+endif()
 
 if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4)
 else ()
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic)
-endif ()
+endif()
