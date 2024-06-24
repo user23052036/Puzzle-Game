@@ -1,0 +1,51 @@
+name: CMake Cross-Platform Build
+
+# Trigger the workflow on push or pull request events to the 'main' branch
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# Define environment variables
+env:
+  # Set the CMake build type. Possible values: Release, Debug, RelWithDebInfo, etc.
+  BUILD_TYPE: Release
+
+# Define the jobs to be run
+jobs:
+  build:
+    # Use a matrix strategy to run the job on multiple platforms
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    # Specify the platform to run on, using the matrix variable
+    runs-on: ${{ matrix.os }}
+
+    # Define the steps to be executed
+    steps:
+    # Step 1: Check out the repository
+    - uses: actions/checkout@v4
+
+    # Step 2: Configure CMake
+    - name: Configure CMake
+      # Configure CMake to generate build files in a 'build' subdirectory
+      # The `-B` flag specifies the build directory
+      # The `-DCMAKE_BUILD_TYPE` flag sets the build type (e.g., Release)
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    # Step 3: Build the project
+    - name: Build
+      # Build the project using the generated build files
+      # The `--config` flag specifies the build type (e.g., Release)
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+    # Step 4: Run tests
+    - name: Test
+      # Change the working directory to the build directory
+      working-directory: ${{github.workspace}}/build
+      # Run tests using CTest
+      # The `-C` flag specifies the build type (e.g., Release)
+      # The `--output-on-failure` flag ensures that the output of failed tests is displayed
+      run: ctest -C ${{env.BUILD_TYPE}} --output-on-failure
