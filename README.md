@@ -2,7 +2,7 @@
 
 Welcome to the Matrix Game! This puzzle game challenges players to slide tiles on a grid to arrange them in the correct order. With various levels of difficulty and sub-levels, it offers a stimulating experience suitable for players of all skill levels.
 
-<img src="/images/image3.png" alt="puzzle-game" style="width:200px; display:block; margin:auto;">
+<img src="/images/image3.png" alt="puzzle-game" style="width:400px; display:block; margin:auto;">
 
 ## Instructions
 
