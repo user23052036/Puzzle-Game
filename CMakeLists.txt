@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.24)
 project(Puzzle-Game)
 
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED True)
 
-#out project
 set(SOURCE_FILES
     code/main.c
     code/algorithm.c
@@ -11,4 +12,15 @@ set(SOURCE_FILES
     code/free.c
     code/numgen.c)
 
+include_directories(code)
+
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+
+# Link the math library
+target_link_libraries(${PROJECT_NAME} m)
+
+if (MSVC)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4)
+else ()
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic)
+endif ()
