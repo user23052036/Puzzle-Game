@@ -1,6 +1,7 @@
 #include"display.h"
 
 
+
 void display(int **array, int length)
 {
     printf("\n");

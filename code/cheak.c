@@ -1,5 +1,6 @@
 #include"cheak.h"
 #include"free.h"
+#include"algorithm.h"
 
 
 int match(int **array, int length)
