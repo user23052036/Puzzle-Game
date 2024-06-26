@@ -9,6 +9,7 @@ set(SOURCE_FILES
     code/algorithm.c
     code/cheak.c
     code/display.c
+    code/levels.c
     code/free.c
     code/numgen.c)
 
