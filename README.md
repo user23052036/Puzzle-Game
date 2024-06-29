@@ -1,8 +1,12 @@
 # About Matrix Game
 
-Welcome to the Matrix Game! This puzzle game challenges players to slide tiles on a grid to arrange them in the correct order. With various levels of difficulty and sub-levels, it offers a stimulating experience suitable for players of all skill levels.
+Welcome to the Matrix Game! 
 
-<img src="/images/image3.png" alt="puzzle-game" style="width:400px; display:block; margin:auto;">
+This puzzle game challenges players to slide tiles on a grid to arrange them in the correct order. With various levels of difficulty and sub-levels, it offers a stimulating experience suitable for players of all skill levels.
+
+<img src="/images/image2.png" alt="puzzle-game" style="width:300px; display:block; margin:auto;">
+
+<img src="/images/image3.png" alt="puzzle-game-play" style="width:400px; display:block; margin:auto;">
 
 ## Instructions
 
@@ -17,9 +21,9 @@ To control the game, use the following keys:
 
 ### Levels
 
-1. **Level 1:** 40 moves
-2. **Level 2:** 35 moves
-3. **Level 3:** 30 moves
+1. **Level 1:** 60 moves
+2. **Level 2:** 55 moves
+3. **Level 3:** 50 moves
 
 ### Sub-Levels
 
@@ -32,12 +36,19 @@ To control the game, use the following keys:
 Here's an overview of the main functions used in the game:
 
 - `random_assign(int** array, int min, int max, int length)`: Assigns random numbers to the grid while ensuring no duplicates.
+
 - `match(int** array, int length)`: Checks if the current arrangement of tiles matches the winning position.
+
 - `display(int** array, int length)`: Displays the grid in a readable format.
+
 - `algorithm(int** array, char direction, int length)`: Moves the blank space in the specified direction and updates the grid.
+
 - `assign_num(int** array, int length)`: Assigns the winning numbers to the grid in ascending order.
+
 - `check_boundary(int** array, int length)`: Checks if the blank space is within the grid boundaries after a move.
+
 - `free_memory(int** array, int length)`: Frees the dynamically allocated memory used for the grid.
+
 - `is_unique(int** array, int length, int i, int j, int rand_num)`: Checks if a number is unique within the grid.
 
 ## How to Play
