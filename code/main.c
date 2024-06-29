@@ -1,3 +1,8 @@
+//author user23052036(nomad2036)
+//https://github.com/user23052036
+//       Puzzle-Game
+
+//standard library includes
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
@@ -5,6 +10,7 @@
 #include<stdbool.h> 
 #include<time.h>
 
+//self defined header files
 #include"numgen.h"
 #include"display.h"
 #include"algorithm.h"
@@ -13,7 +19,8 @@
 #include"free.h"
 
 
-int main(void)            // Main function to start the game
+//main function
+int main(void)       
 {
 
     int level, moves, length;
@@ -24,7 +31,7 @@ int main(void)            // Main function to start the game
     char *current_time = asctime(local_time);
 
     // Display game instructions and level selection
-    system("clear");
+    system("cls");
     printf("\n\n\n\t\t\t! GAME !\n");
     printf("\t\t%s\n",current_time);
     printf("_________________________________________________________\n\n");
@@ -62,7 +69,7 @@ int main(void)            // Main function to start the game
             default:
             {
                 printf("Please enter a valid level !\n\n");
-                system("clear");
+                system("cls");
                 continue;
             }
         }
@@ -97,7 +104,7 @@ int main(void)            // Main function to start the game
             default:
             {
                 printf("Please enter a valid sub-level !\n\n");
-                system("clear");
+                system("cls");
                 continue;
             }
         }
@@ -123,7 +130,7 @@ int main(void)            // Main function to start the game
     getchar();
     
     random_assign(array,1,length*length,length);
-    system("clear");
+    system("cls");
 
     // Gameplay loop
     while(moves--)
@@ -133,7 +140,7 @@ int main(void)            // Main function to start the game
         scanf("%c",&direction);
 
         getchar();
-        system("clear");
+        system("cls");
         algorithm(array,direction,length);
         
         printf("moves left:--->  (%d) \n\n",moves);
