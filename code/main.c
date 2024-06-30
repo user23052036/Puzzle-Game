@@ -3,20 +3,21 @@
 //       Puzzle-Game
 
 //standard library includes
+#include <ctype.h>
+#include<math.h>
+#include<stdbool.h> 
 #include<stdio.h>
 #include<stdlib.h>
-#include<math.h>
-#include<unistd.h>
-#include<stdbool.h> 
 #include<time.h>
+#include<unistd.h>
 
 //self defined header files
-#include"numgen.h"
-#include"display.h"
 #include"algorithm.h"
-#include"levels.h"
 #include"cheak.h"
+#include"display.h"
 #include"free.h"
+#include"levels.h"
+#include"numgen.h"
 
 
 //main function
@@ -24,7 +25,7 @@ int main(void)
 {
 
     int level, moves, length;
-    char direction, choice, sub_level[10];
+    char direction, choice, sub_level[10], key_pressed[5];;
 
     time_t now = time(NULL);
     struct tm *local_time = localtime(&now);
@@ -45,9 +46,9 @@ int main(void)
     // Main loop to handle game sub-levels
     while(1)
     {
-        printf("PRESS (1) FOR LEVEL-1 [40 moves]\n");
-        printf("PRESS (2) FOR LEVEL-2 [35 moves]\n");
-        printf("PRESS (3) FOR LEVEL-3 [30 moves]\n\n");
+        printf("PRESS (1) FOR LEVEL-1 [60 moves]\n");
+        printf("PRESS (2) FOR LEVEL-2 [55 moves]\n");
+        printf("PRESS (3) FOR LEVEL-3 [50 moves]\n\n");
         printf("Choose the level at which you want to play the game :: --->");
         scanf("%d",&level);
 
@@ -137,9 +138,26 @@ int main(void)
     {
         display(array,length);
         printf("play your move:-> ");
-        scanf("%c",&direction);
+        scanf("%s",key_pressed);
 
-        getchar();
+        // Get key pressed.
+        if (toupper(key_pressed[0]) == 'A' || toupper(key_pressed[0]) == 'S' || 
+        toupper(key_pressed[0]) == 'D' || toupper(key_pressed[0]) == 'W')
+        direction = key_pressed[0];
+        // Arrow keys are converted into ^[[A, [[B, [[C, [[C on linux. ^[ = Esc.
+        else if (toupper(key_pressed[0]) == 27 || toupper(key_pressed[1]) == '[')     // 27 = Esc
+        {
+            if (toupper(key_pressed[2]) == 'A')
+                direction = 'w';
+            else if (toupper(key_pressed[2]) == 'B')
+                direction = 's';
+            else if (toupper(key_pressed[2]) == 'C')
+                direction = 'd';
+            else if (toupper(key_pressed[2]) == 'D')
+                direction = 'a';
+        }
+
+
         system("cls");
         algorithm(array,direction,length);
         
