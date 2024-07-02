@@ -136,6 +136,9 @@ int main(void)
     // Gameplay loop
     while(moves--)
     {
+        printf("-----Puzzle-Game-------\n");
+        printf("moves left:--->  (%d) \n",moves+1);
+
         display(array,length);
         printf("play your move:-> ");
         scanf("%s",key_pressed);
@@ -160,8 +163,6 @@ int main(void)
 
         system("cls");
         algorithm(array,direction,length);
-        
-        printf("moves left:--->  (%d) \n\n",moves);
 
         // Check if the player has won
         if(match(array,length) == 0)

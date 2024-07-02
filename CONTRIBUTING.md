@@ -5,7 +5,7 @@
 </head>
 <body>
   <h1 style="color: #007bff;">Contributing to Puzzle Game</h1>
-  <p>Thank you for considering contributing to our puzzle game project!</p>
+  <p>Thank you for considering contributing to our Puzzle Game open source project.</p>
   <p>Here's how you can get involved:</p>
   <ul>
     <li><strong><u>Bug Fixes:</u></strong> Check existing issues or report new ones.</li>
