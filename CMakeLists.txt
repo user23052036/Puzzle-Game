@@ -11,7 +11,8 @@ set(SOURCE_FILES
     code/display.c
     code/levels.c
     code/free.c
-    code/numgen.c)
+    code/numgen.c
+    code/getkey.c)
 
 include_directories(code)
 

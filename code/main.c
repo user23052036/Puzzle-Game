@@ -16,6 +16,7 @@
 #include"cheak.h"
 #include"display.h"
 #include"free.h"
+#include "getkey.h"
 #include"levels.h"
 #include"numgen.h"
 
@@ -25,7 +26,7 @@ int main(void)
 {
 
     int level, moves, length;
-    char direction, choice, sub_level[10], key_pressed[5];;
+    char direction, choice, sub_level[10];
 
     time_t now = time(NULL);
     struct tm *local_time = localtime(&now);
@@ -141,7 +142,7 @@ int main(void)
 
         display(array,length);
         printf("play your move:-> ");
-        scanf("%s",key_pressed);
+        /* scanf("%s",key_pressed);
 
         // Get key pressed.
         if (toupper(key_pressed[0]) == 'A' || toupper(key_pressed[0]) == 'S' || 
@@ -158,7 +159,8 @@ int main(void)
                 direction = 'd';
             else if (toupper(key_pressed[2]) == 'D')
                 direction = 'a';
-        }
+        } */
+       direction = get_key_pressed();
 
 
         system("cls");
