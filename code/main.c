@@ -142,24 +142,6 @@ int main(void)
 
         display(array,length);
         printf("play your move:-> ");
-        /* scanf("%s",key_pressed);
-
-        // Get key pressed.
-        if (toupper(key_pressed[0]) == 'A' || toupper(key_pressed[0]) == 'S' || 
-        toupper(key_pressed[0]) == 'D' || toupper(key_pressed[0]) == 'W')
-        direction = key_pressed[0];
-        // Arrow keys are converted into ^[[A, [[B, [[C, [[C on linux. ^[ = Esc.
-        else if (toupper(key_pressed[0]) == 27 || toupper(key_pressed[1]) == '[')     // 27 = Esc
-        {
-            if (toupper(key_pressed[2]) == 'A')
-                direction = 'w';
-            else if (toupper(key_pressed[2]) == 'B')
-                direction = 's';
-            else if (toupper(key_pressed[2]) == 'C')
-                direction = 'd';
-            else if (toupper(key_pressed[2]) == 'D')
-                direction = 'a';
-        } */
        direction = get_key_pressed();
 
 

@@ -1,6 +1,4 @@
-#include <ctype.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 #if defined(_WIN32) || defined(_WIN64)
     #include <windows.h>
@@ -30,22 +28,9 @@
             Sleep(50); // Para no sobrecargar la CPU
         }
     }
-#endif
 
-
-char get_key(void);
-
-char get_key_pressed(void)
-{
-    #if defined(_WIN32) || defined(_WIN64)
-        return get_key_window();
-    #else
-        return get_key();
-    #endif
-}
-
-
-
+#else
+#include <ctype.h>
 char get_key(void)
 {
     char key_pressed[5];
@@ -56,7 +41,7 @@ char get_key(void)
     toupper(key_pressed[0]) == 'D' || toupper(key_pressed[0]) == 'W')
     return key_pressed[0];
     // Arrow keys are converted into ^[[A, [[B, [[C, [[C on linux. ^[ = Esc.
-    else if (toupper(key_pressed[0]) == 27 || toupper(key_pressed[1]) == '[')     // 27 = Esc
+    else if (toupper(key_pressed[0]) == 27 && toupper(key_pressed[1]) == '[')     // 27 = Esc
     {
         if (toupper(key_pressed[2]) == 'A')
             return 'w';
@@ -67,4 +52,15 @@ char get_key(void)
         else if (toupper(key_pressed[2]) == 'D')
             return 'a';
     }
+}
+#endif
+
+
+char get_key_pressed(void)
+{
+    #if defined(_WIN32) || defined(_WIN64)
+        return get_key_window();
+    #else
+        return get_key();
+    #endif
 }
