@@ -112,7 +112,6 @@ int main(void)
         }
         break;
     }
-
       
       
     printf("Below is the winning position need to be achieved to win the game\n\n");
@@ -142,8 +141,7 @@ int main(void)
 
         display(array,length);
         printf("play your move:-> ");
-       direction = get_key_pressed();
-
+        get_key_pressed(&direction);
 
         system("cls");
         algorithm(array,direction,length);
