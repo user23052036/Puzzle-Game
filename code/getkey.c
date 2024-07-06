@@ -3,64 +3,85 @@
 #if defined(_WIN32) || defined(_WIN64)
     #include <windows.h>
 
-    char get_key_window(void)
-    {
+    void waitForKeyRelease(int virtualKey) {
+        while (GetAsyncKeyState(virtualKey) & 0x8000) {}   // wait until key release     
+        FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));   // avoid showing pressed key during process.
+    }
+
+    void get_key_window(char *direction) {
         while (1) {
-
-            // 0x8000 compare the 15 bits. If it's 1, the key is pressed.
-            if (GetAsyncKeyState(VK_UP) & 0x8000 || GetAsyncKeyState('W') & 0x8000) {
-                Sleep(50);
-                return 'w'; // Evita múltiples detecciones
+            if (GetAsyncKeyState(VK_UP) & 0x8000) {
+                waitForKeyRelease(VK_UP);
+                *direction = 'w';
+                break;
+            } else if (GetAsyncKeyState('W') & 0x8000) {
+                waitForKeyRelease('W');
+                *direction = 'w';
+                break;
+            } else if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+                waitForKeyRelease(VK_DOWN);
+                *direction = 's';
+                break;
+            } else if (GetAsyncKeyState('S') & 0x8000) {
+                waitForKeyRelease('S');
+                *direction = 's';
+                break;
+            } else if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+                waitForKeyRelease(VK_LEFT);
+                *direction = 'a';
+                break;
+            } else if (GetAsyncKeyState('A') & 0x8000) {
+                waitForKeyRelease('A');
+                *direction = 'a';
+                break;
+            } else if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+                waitForKeyRelease(VK_RIGHT);
+                *direction = 'd';
+                break;
+            } else if (GetAsyncKeyState('D') & 0x8000) {
+                waitForKeyRelease('D');
+                *direction = 'd';
+                break;
             }
-            if (GetAsyncKeyState(VK_DOWN) & 0x8000 || GetAsyncKeyState('S') & 0x8000) {
-                Sleep(50);
-                return 's';
-            }
-            if (GetAsyncKeyState(VK_LEFT) & 0x8000 || GetAsyncKeyState('A') & 0x8000) {
-                Sleep(50);
-                return 'a';
-            }
-            if (GetAsyncKeyState(VK_RIGHT) & 0x8000 || GetAsyncKeyState('D') & 0x8000) {
-                Sleep(50);
-                return 'd';
-            }
-
-            Sleep(50); // Para no sobrecargar la CPU
         }
     }
 
 #else
-#include <ctype.h>
-char get_key(void)
-{
-    char key_pressed[5];
-    scanf("%s",key_pressed);
-
-    // Get key pressed.
-    if (toupper(key_pressed[0]) == 'A' || toupper(key_pressed[0]) == 'S' || 
-    toupper(key_pressed[0]) == 'D' || toupper(key_pressed[0]) == 'W')
-    return key_pressed[0];
-    // Arrow keys are converted into ^[[A, [[B, [[C, [[C on linux. ^[ = Esc.
-    else if (toupper(key_pressed[0]) == 27 && toupper(key_pressed[1]) == '[')     // 27 = Esc
+    #include <ctype.h>
+    void get_key(char *direction)
     {
-        if (toupper(key_pressed[2]) == 'A')
-            return 'w';
-        else if (toupper(key_pressed[2]) == 'B')
-            return 's';
-        else if (toupper(key_pressed[2]) == 'C')
-            return 'd';
-        else if (toupper(key_pressed[2]) == 'D')
-            return 'a';
+        char key_pressed[5];
+        do
+        {
+            scanf("%s",key_pressed);
+            // Get key pressed.
+            if (toupper(key_pressed[0]) == 'A' || toupper(key_pressed[0]) == 'S' || 
+            toupper(key_pressed[0]) == 'D' || toupper(key_pressed[0]) == 'W')
+            *direction = key_pressed[0];
+            // Arrow keys are converted into ^[[A, [[B, [[C, [[C on linux. ^[ = Esc.
+            else if (toupper(key_pressed[0]) == 27 && toupper(key_pressed[1]) == '[')     // 27 = Esc
+            {
+                switch(toupper(key_pressed[2]))
+                {
+                    case 'A': *direction = 'w'; break;
+                    case 'B': *direction = 's'; break;
+                    case 'C': *direction = 'd'; break;
+                    case 'D': *direction = 'a'; break;
+                    default: *direction = 'e'; break;   // no asdw no arrow key pressed.
+                }
+            }
+            else
+                *direction = 'e';
+        } while (*direction == 'e');
     }
-}
 #endif
 
 
-char get_key_pressed(void)
+void get_key_pressed(char *direction)
 {
     #if defined(_WIN32) || defined(_WIN64)
-        return get_key_window();
+        get_key_window(direction);
     #else
-        return get_key();
+        get_key(direction);
     #endif
 }

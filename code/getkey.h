@@ -2,6 +2,6 @@
 #define GETKEY_H
 
 // Function to get the key pressed.
-char get_key_pressed(void);
+void get_key_pressed(char *direction);
 
 #endif
