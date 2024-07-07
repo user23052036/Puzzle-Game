@@ -33,7 +33,7 @@ int main(void)
     char *current_time = asctime(local_time);
 
     // Display game instructions and level selection
-    system("cls");
+    clear_terminal();
     printf("\n\n\n\t\t\t! GAME !\n");
     printf("\t\t%s\n",current_time);
     printf("_________________________________________________________\n\n");
@@ -71,7 +71,7 @@ int main(void)
             default:
             {
                 printf("Please enter a valid level !\n\n");
-                system("cls");
+                clear_terminal();
                 continue;
             }
         }
@@ -106,7 +106,7 @@ int main(void)
             default:
             {
                 printf("Please enter a valid sub-level !\n\n");
-                system("cls");
+                clear_terminal();
                 continue;
             }
         }
@@ -131,7 +131,7 @@ int main(void)
     getchar();
     
     random_assign(array,1,length*length,length);
-    system("cls");
+    clear_terminal();
 
     // Gameplay loop
     while(moves--)
@@ -143,7 +143,7 @@ int main(void)
         printf("play your move:-> ");
         get_key_pressed(&direction);
 
-        system("cls");
+        clear_terminal();
         algorithm(array,direction,length);
 
         // Check if the player has won

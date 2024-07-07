@@ -1,7 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
+
 #if defined(_WIN32) || defined(_WIN64)
+    #define CLEAR "cls"
     #include <windows.h>
+    
 
     void waitForKeyRelease(int virtualKey) {
         while (GetAsyncKeyState(virtualKey) & 0x8000) {}   // wait until key release     
@@ -47,13 +51,26 @@
     }
 
 #else
+    #define CLEAR "clear"
     #include <ctype.h>
+
+    void clear_input_buffer() {
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF) { }
+    }
+
     void get_key(char *direction)
     {
         char key_pressed[5];
+        
         do
         {
-            scanf("%s",key_pressed);
+            for (int i = 0; i < 5; i++)
+                    key_pressed[i] = '\0';
+            
+            scanf("%4s",key_pressed);
+            clear_input_buffer();
+
             // Get key pressed.
             if (toupper(key_pressed[0]) == 'A' || toupper(key_pressed[0]) == 'S' || 
             toupper(key_pressed[0]) == 'D' || toupper(key_pressed[0]) == 'W')
@@ -72,6 +89,7 @@
             }
             else
                 *direction = 'e';
+                
         } while (*direction == 'e');
     }
 #endif
@@ -84,4 +102,8 @@ void get_key_pressed(char *direction)
     #else
         get_key(direction);
     #endif
+}
+
+void clear_terminal(void){
+    system(CLEAR);
 }
