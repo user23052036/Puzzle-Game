@@ -3,5 +3,6 @@
 
 // Function to get the key pressed.
 void get_key_pressed(char *direction);
+void clear_terminal(void);
 
 #endif
