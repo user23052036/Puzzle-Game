@@ -1,0 +1,68 @@
+ FUNCTION OVERVIEW
+
+Here's an overview of the main functions used in the game:
+
+- `random_assign(int** array, int min, int max, int length)`: Assigns random numbers to the grid while ensuring no duplicates.
+
+- `match(int** array, int length)`: Checks if the current arrangement of tiles matches the winning position.
+
+- `display(int** array, int length)`: Displays the grid in a readable format.
+
+- `algorithm(int** array, char direction, int length)`: Moves the blank space in the specified direction and updates the grid.
+
+- `assign_num(int** array, int length)`: Assigns the winning numbers to the grid in ascending order.
+
+- `check_boundary(int** array, int length)`: Checks if the blank space is within the grid boundaries after a move.
+
+- `free_memory(int** array, int length)`: Frees the dynamically allocated memory used for the grid.
+
+- `is_unique(int** array, int length, int i, int j, int rand_num)`: Checks if a number is unique within the grid.
+
+
+
+---> HOW ARROW KEY IS DETECTED IN WINDOWS
+
+*   In Windows,arrow keys are typically accessed through keyboard events rather than direct ASCII values.
+
+1)  First the get_key_pressed() function is called in main.c -> getkey.c
+
+2)  This then calls get_key_windows() function in getkey.c
+
+3)  GetAsyncKeyState is a function in the Windows API that determines whether a key is currently pressed 
+    and if it was pressed since the last call to GetAsyncKeyState. It can be used to check the state of a 
+    particular key at real time.
+
+    WITHOUT HAVING TO PRESS ENTER WE CAN PUT GetAsyncKeyState() INSIDE A while(1) LOOP WHICH WILL 
+    CONSTANTLY MONITER KEYS AND IF ANYKEY IS PRESSED IT PROCESSES FERTHUR WITHOUT HAVING TO WAIT 
+    FOR THE ENTER KEY TO BE PRESSED TO REGISTER THE INPUT.
+
+    The function returns a SHORT value. The return value's interpretation depends on the high-order and 
+    low-order bits:
+    If the most significant bit is set, it means the key is currently pressed down.
+    If the least significant bit is set, it means the key was pressed after the previous call to 
+    GetAsyncKeyState. But here we are concerened about cheaking if the key is currently pressed or not.
+    So, we take 0x8000 and bitwise operation with current key press. to see if the MSB is set or not.
+
+4)  When any of the 4 arrow key is pressed it gets into the respective if statement and calls 
+    wait_for_key_release() function. It waits for the keyrelease and clears the input buffer.
+
+5)  GetStdHandle(STD_INPUT_HANDLE): This part gets a handle (a unique identifier) that represents the 
+    standard input device of your program. This is where the program reads input from the user 
+    (like keyboard input).
+    FlushConsoleInputBuffer(handle): This function call flushes (clears) the input buffer associated with 
+    the console input handle (handle in this case). An input buffer is like a temporary storage area 
+    where the system stores input events (like key presses) before your program reads them.
+
+6) Finally we are writing ASWD keys on to the direction variable.
+
+
+---> HOW INPUT KEY IS DETECTED IN LINUX(unix based system)
+
+*   Non-canonical mode in Linux refers to a mode of operation for terminal input that allows input 
+    characters to be processed immediately without waiting for a newline character (i.e., Enter key) to 
+    be pressed. This is different from canonical mode, where input is processed line by line.
+
+1) Setting up non_cannonical for the terminal by calling set_noncanonical_mode()
+2) calling the get_key() function
+3) resetting the default setting by calling set_canonical_mode()
+

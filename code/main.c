@@ -116,17 +116,13 @@ int main(void)
       
     printf("Below is the winning position need to be achieved to win the game\n\n");
     int **array = (int**)malloc(length*sizeof(int*));  
-
     for(int i=0; i<length; i++)
         array[i] = (int*)malloc(length*sizeof(int));    
     
     assign_num(array,length);                        
     display(array,length);
 
-    // Clear input buffer
-    while(getchar() != '\n'){}
-
-    // Start the game
+    clear_input_buffer();
     printf("Lets play the GAME press (enter) to start ::--->  ");
     getchar();
     

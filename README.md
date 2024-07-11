@@ -31,26 +31,6 @@ To control the game, use the following keys:
 - **Medium:** 4x4 grid
 - **Hard:** 5x5 grid
 
-## Functions Overview
-
-Here's an overview of the main functions used in the game:
-
-- `random_assign(int** array, int min, int max, int length)`: Assigns random numbers to the grid while ensuring no duplicates.
-
-- `match(int** array, int length)`: Checks if the current arrangement of tiles matches the winning position.
-
-- `display(int** array, int length)`: Displays the grid in a readable format.
-
-- `algorithm(int** array, char direction, int length)`: Moves the blank space in the specified direction and updates the grid.
-
-- `assign_num(int** array, int length)`: Assigns the winning numbers to the grid in ascending order.
-
-- `check_boundary(int** array, int length)`: Checks if the blank space is within the grid boundaries after a move.
-
-- `free_memory(int** array, int length)`: Frees the dynamically allocated memory used for the grid.
-
-- `is_unique(int** array, int length, int i, int j, int rand_num)`: Checks if a number is unique within the grid.
-
 ## How to Play
 
 1. **Choose a Level:** Select your preferred level (1 to 3) with different move limits.
